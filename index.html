@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="en" />
+
+<link href="jquery.zrssfeed.css" rel="stylesheet" type="text/css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.zrssfeed.min.js" type="text/javascript"></script>
+
+<script src="http://admin.zazar.net/__system/_js/zframework/jquery.zframework.js" type="text/javascript"></script>
+<link href="http://admin.zazar.net/__system/_css/zframework/zframework.css" rel="stylesheet" type="text/css" />
+
+<link href="example_zframework.css" rel="stylesheet" type="text/css" />
+
+<title>News Collector</title>
+<style>
+.slider {
+	width: 460px;
+	height: 60px;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#zticker').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false
+	}, function(e) {
+		$.zazar.ticker({selector: '#zticker ul'});
+	});
+
+	$('#zslider').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false,
+		limit: 5
+	}, function(e) {
+		$.zazar.slider({selector: '#zslider ul'});
+	});
+
+	$('#zrotate').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false,
+		limit: 5
+	}, function(e) {
+		$.zazar.rotate({selector: '#zrotate ul'});
+	});
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	setRSSFeed('#menu');	
+
+	$('#menu').change(function() {
+		setRSSFeed(this);
+	});
+
+	function setRSSFeed(obj) {
+		var feedurl = $('option:selected', obj).val();
+		
+		if (feedurl) {
+			$('#test').rssfeed(feedurl);
+		}
+	}
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	setRSSFeed('#menu1');	
+
+	$('#menu1').change(function() {
+		setRSSFeed(this);
+	});
+
+	function setRSSFeed(obj) {
+		var feedurl = $('option:selected', obj).val();
+		
+		if (feedurl) {
+			$('#test1').rssfeed(feedurl);
+		}
+	}
+});
+</script>
+</head>
+<body>
+<h3 align="center">Latest Blog Updates</h3>
+<table>
+<tr align="top">
+  <td>
+
+<h4>News updates</h4>
+<select id="menu1">
+<option value="http://news.google.co.in/news?pz=1&cf=all&ned=in&hl=en&output=rss">Google News</option>
+	<option value="http://www.thehindu.com/news/?service=rss">The Hindu</option>
+	<option value="http://feeds.feedburner.com/NdtvNews-TopStories">NDTV News</option>
+<option value="http://zeenews.india.com/rss/nation.aspx">Zee news</option>
+</select>
+<div id="test1"></div>
+</td>
+  <td><h4>Blog updates</h4>
+<select id="menu">
+	<option value="http://feeds2.feedburner.com/honeytechblog">HoneyTechBlog.com</option>
+	<option value="http://feeds.feedburner.com/maktechblog">MakTechBlog.com</option>
+	<option value="http://feeds.labnol.org/labnol">Labnol.org</option>
+<option value="http://feeds.feedburner.com/HowstuffworksComputerstuffDailyRssFeed">Howstuffworks.com</option>
+</select>
+<div id="test"></div></td>
+ 
+</tr>
+</table> 
+
+
+
+</body>
+</html>
